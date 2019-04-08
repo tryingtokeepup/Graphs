@@ -97,3 +97,4 @@ class Graph:
 
             for next_vert in self.vertices[v]:
                 s.push(next_vert)
+# working on traversal now
