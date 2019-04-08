@@ -1,8 +1,3 @@
-"""
-Simple graph implementation
-"""
-
-
 class Stack:
     def __init__(self):
         self.size = 0
