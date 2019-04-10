@@ -188,39 +188,3 @@ class SocialGraph:
         relationships = self.users(userID)
         return visited
 
-
-
-
-
-#  def dfs(self, starting_vertex, target):
-#         # use a stack instead of a queue, and it should actually all work out.
-#                 # build an empty queue
-#         stack = Stack()
-
-#         # create a visited set
-#         visited = set()
-
-#         # enqueue [A Path To] the starting vertex to the queue
-#         stack.push([starting_vertex])
-#         # while queue is not empty
-#         while stack.size() > 0:
-#             # dequeue the first [PATH] from the queue
-#             stack_in_check = stack.pop()
-#             # pull the last vertex from the path
-#             # check if it's visited...
-#             if stack_in_check[-1] not in visited:
-#                 # add it to visited
-#                 visited.add(stack_in_check[-1])
-#                 # if it hasn't been visited
-#                 if stack_in_check[-1] == target:
-#                     return stack_in_check  # you need to return the whole path for this section
-#                     # and we are done!
-
-#                 for neighbor_vert in self.vertices[stack_in_check[-1]]:
-
-#                     # by value, not by ref - cool trick to copy a array
-#                     path = stack_in_check[:]
-#                     # append the neighbor vertex to the path
-#                     path.append(neighbor_vert)
-#                     # enqueue the new path
-#                     stack_in_check.enqueue(path)
