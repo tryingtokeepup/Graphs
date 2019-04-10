@@ -4,11 +4,10 @@ You are provided with a pre-generated graph consisting of 500 rooms. You are res
 
 Open `adv.py`. There are four parts to the provided code:
 
-* World generation code. Do not modify this!
-* An incomplete list of directions. Your task is to fill this with valid traversal directions.
-* Test code. Run the tests by typing `python3 adv.py` in your terminal.
-* REPL code. You can uncomment this and run `python3 adv.py` to walk around the map.
-
+- World generation code. Do not modify this!
+- An incomplete list of directions. Your task is to fill this with valid traversal directions.
+- Test code. Run the tests by typing `python3 adv.py` in your terminal.
+- REPL code. You can uncomment this and run `python3 adv.py` to walk around the map.
 
 You may find the commands `player.currentRoom.id`, `player.currentRoom.getExits()` and `player.travel(direction)` useful.
 
@@ -47,12 +46,16 @@ If all paths have been explored, you're done!
 
 ## Minimum Viable Product
 
-* __1__: Tests do not pass
-* __2__: Tests pass with `len(traversalPath) < 2000`
-* __3__: Tests pass with `len(traversalPath) < 1000`
+- **1**: Tests do not pass
+- **2**: Tests pass with `len(traversalPath) < 2000`
+- **3**: Tests pass with `len(traversalPath) < 1000`
 
 ## Stretch Problems
 
 It is very difficult to calculate the shortest possible path that traverses the entire graph. Why?
+
+Hahaha, I haven't even started and I can answer this question. Its a NP-Incomplete problem. Well, perhaps its complete, because you _can_ find if a traversal path is the shortest by plugging it into the equation and comparing if it is the optimal solution in a bunch of other solutions.
+
+I was corrected by my classmates; this is NOT the legendary Hamiltonian Maze problem, and
 
 My best path is 990 moves. Can you find a shorter path?

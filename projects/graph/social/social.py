@@ -130,9 +130,9 @@ class SocialGraph:
                     # and we are done!
                 # Then, put all of it's children into the queue
                 for neighbor in self.friendships[queue_in_check[-1]]:
-                    new_path = list(queue_in_check)
-                    new_path.append(neighbor)
-                    queue.enqueue(new_path)
+                    path = queue_in_check[:]
+                    path.append(neighbor)
+                    queue.enqueue()
 
     def getAllSocialPaths(self, userID):
         """

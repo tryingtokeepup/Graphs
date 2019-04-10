@@ -115,8 +115,8 @@ class Graph:
                 return self.dft_recursive(neighbor, visited)
 
 
-
 # A PATH IS JUST AN ARRAY! DONT THING OF IT AS A STACK OR A QUEUE OR A SET. ITS JUST AN ARRAY
+
 
     def bfs(self, starting_vertex, target):
         # build an empty queue
