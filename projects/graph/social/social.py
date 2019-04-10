@@ -79,7 +79,7 @@ class SocialGraph:
         # avoid dups by making sure that the first id is higher than the 2nd id
         for user_id in self.users:
             for other_id in range(user_id + 1, self.lastID + 1):
-                possible_friendships.append(user_id, other_id)
+                possible_friendships.append((user_id, other_id))
 
         random.shuffle(possible_friendships)
 
@@ -90,29 +90,49 @@ class SocialGraph:
             friendship = possible_friendships[i]
             self.addFriendship(friendship[0], friendship[1])
 
-    def bfs(self, starting_vertex, search_vertex):
+    def bfs(self, starting_vertex, target):
             # Create an empty queue
-        q = Queue()
-        # Create an empty set of visited vertices
+        # q = Queue()
+        # # Create an empty set of visited vertices
+        # visited = set()
+        # # Put the starting vertex in our Queue
+        # q.enqueue([starting_vertex])
+        # # While the queue is not empty....
+        # while q.size > 0:
+        #     path = q.dequeue()
+        #     # Dequeue the first node from the queue
+        #     v = path[-1]
+        #     # If that node has not been visted...
+        #     if v not in visited:
+        #         # Mark it as visited
+        #         visited.add(v)
+        #         if v == search_vertex:
+        #             return path
+        queue = Queue()
+
+        # create a visited set
         visited = set()
-        # Put the starting vertex in our Queue
-        q.enqueue([starting_vertex])
-        # While the queue is not empty....
-        while q.size() > 0:
-            path = q.dequeue()
-            # Dequeue the first node from the queue
-            v = path[-1]
-            # If that node has not been visted...
-            if v not in visited:
-                # Mark it as visited
-                visited.add(v)
-                if v == search_vertex:
-                    return path
+
+        # enqueue [A Path To] the starting vertex to the queue
+        queue.enqueue([starting_vertex])
+        # while queue is not empty
+        while queue.size > 0:
+            # dequeue the first [PATH] from the queue
+            queue_in_check = queue.dequeue()
+            # pull the last vertex from the path
+            # check if it's visited...
+            if queue_in_check[-1] not in visited:
+                # add it to visited
+                visited.add(queue_in_check[-1])
+                # if it hasn't been visited
+                if queue_in_check[-1] == target:
+                    return queue_in_check  # you need to return the whole path for this section
+                    # and we are done!
                 # Then, put all of it's children into the queue
-                for neighbor in self.friendships[v]:
-                    new_path = list(path)
+                for neighbor in self.friendships[queue_in_check[-1]]:
+                    new_path = list(queue_in_check)
                     new_path.append(neighbor)
-                    q.enqueue(new_path)
+                    queue.enqueue(new_path)
 
     def getAllSocialPaths(self, userID):
         """
@@ -126,7 +146,7 @@ class SocialGraph:
         visited = {}  # Note that this is a dictionary, not a set
         print(f"user ID {userID}")
 
-        for i in range(1, len(self.friendships + 1)):
+        for i in range(1, len(self.users)):
             visited[i] = self.bfs(userID, i)
 
         return visited
@@ -136,5 +156,5 @@ if __name__ == '__main__':
     sg = SocialGraph()
     sg.populateGraph(10, 2)
     print(sg.friendships)
-    connections = sg.getAllSocialPaths(1)
+    connections = sg.getAllSocialPaths(3)
     print(connections)
