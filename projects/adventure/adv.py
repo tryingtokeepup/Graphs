@@ -54,7 +54,11 @@ class Queue():
             return self.queue.pop(0)
         else:
             return None
-
+    def random_dequeue(self):
+        if self.size() > 0:
+            return self.queue.pop(random.choice([0, len(self.queue)-1]))
+        else:
+            return None
     def size(self):
         return (len(self.queue))
 # use a DFS have to pull this off
@@ -79,7 +83,8 @@ def traverseMap(player, direction=''):
     if direction is not '':
         # let's make a connection with the previous room
         reverse_direction = opposite[direction]
-        previous_room = player.currentRoom.getRoomInDirection(reverse_direction)
+        previous_room = player.currentRoom.getRoomInDirection(
+reverse_direction)
         knownGraph[current_room_id][reverse_direction] = previous_room.id
 
     next_direction = '?'
@@ -111,7 +116,9 @@ def traverseMap(player, direction=''):
 
         while queue.size() > 0:
             # While there is something in the Queue take out the last item and set current room to the last item in path
-            queue_in_check = queue.dequeue()
+            # queue_in_check = queue.dequeue()
+            queue_in_check = queue.random_dequeue()
+
             current = queue_in_check[-1]
 
             if current not in visited:
