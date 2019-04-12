@@ -91,23 +91,7 @@ class SocialGraph:
             self.addFriendship(friendship[0], friendship[1])
 
     def bfs(self, starting_vertex, target):
-            # Create an empty queue
-        # q = Queue()
-        # # Create an empty set of visited vertices
-        # visited = set()
-        # # Put the starting vertex in our Queue
-        # q.enqueue([starting_vertex])
-        # # While the queue is not empty....
-        # while q.size > 0:
-        #     path = q.dequeue()
-        #     # Dequeue the first node from the queue
-        #     v = path[-1]
-        #     # If that node has not been visted...
-        #     if v not in visited:
-        #         # Mark it as visited
-        #         visited.add(v)
-        #         if v == search_vertex:
-        #             return path
+
         queue = Queue()
 
         # create a visited set
@@ -130,9 +114,9 @@ class SocialGraph:
                     # and we are done!
                 # Then, put all of it's children into the queue
                 for neighbor in self.friendships[queue_in_check[-1]]:
-                    new_path = list(queue_in_check)
-                    new_path.append(neighbor)
-                    queue.enqueue(new_path)
+                    path = queue_in_check[:]
+                    path.append(neighbor)
+                    queue.enqueue(path)
 
     def getAllSocialPaths(self, userID):
         """
