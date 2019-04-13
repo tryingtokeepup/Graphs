@@ -76,17 +76,17 @@ def add_unexplored_rooms(player, graph):
 def traverseMap(player, direction=''):
     if len(knownGraph.keys()) == len(roomGraph):
         return
+    ## HELPER VARIABLE ##
     current_room_id = player.currentRoom.id
-    # current_room = player.currentRoom
+    ## HELPER VARIABLE ##
     if current_room_id not in knownGraph:  
         append_unknown_to_graph(player, knownGraph)
+    ### THIS IS REDUNDANT, NEED TO TURN THIS INTO A WHILE LOOP####
     if direction is not '':
         # let's make a connection with the previous room
         reverse_direction = opposite[direction]
-        previous_room = player.currentRoom.getRoomInDirection(
-reverse_direction)
+        previous_room = player.currentRoom.getRoomInDirection(reverse_direction)
         knownGraph[current_room_id][reverse_direction] = previous_room.id
-
     next_direction = '?'
     # lets find some more directions
     exits = player.currentRoom.getExits()
